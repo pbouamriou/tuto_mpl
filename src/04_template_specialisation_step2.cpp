@@ -12,6 +12,11 @@ template<> struct IsChar<unsigned char> {
     enum { value = 1 };
 };
 
+#if (__cplusplus < 201103L)
+#include "assert_c++03.hpp"
+
+// ---------------------------------------------------------------------------------
+// C++03
 template<typename T> struct NoCV {
     typedef T type;
 };
@@ -37,6 +42,43 @@ template<typename T> struct IsAnyChar {
         value = IsChar<typename NoCV<T>::type>::value
     };
 };
+
+// ---------------------------------------------------------------------------------
+
+#else
+
+// ---------------------------------------------------------------------------------
+// C++11
+
+#include <type_traits>
+
+template<typename T> struct NoCV {
+    using type =  T;
+};
+
+// Specialization (const)
+template<typename T> struct NoCV<const T> {
+    using type =  T;
+};
+
+// Specialization (const volatile)
+template<typename T> struct NoCV<const volatile T> {
+    using type =  T;
+};
+
+// Specialization (volatile)
+template<typename T> struct NoCV<volatile T> {
+    using type =  T;
+};
+
+// Combinate IsChar and NoCV
+template<typename T> struct IsAnyChar {
+    static constexpr auto value = IsChar<typename NoCV<T>::type>::value;
+};
+
+// ---------------------------------------------------------------------------------
+
+#endif
 
 
 

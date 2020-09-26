@@ -1,5 +1,8 @@
 {
     "files.exclude": {
         "**/obj": true
+    },
+    "files.associations": {
+        "type_traits": "cpp"
     }
 }

@@ -1,3 +1,7 @@
+#if (__cplusplus < 201103L)
+#include "assert_c++03.hpp"
+#endif
+
 template<unsigned N> struct IsEven {
     enum {
         value = (N%2) ? 0 : 1

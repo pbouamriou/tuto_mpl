@@ -1,3 +1,7 @@
+#if (__cplusplus < 201103L)
+#include "assert_c++03.hpp"
+#endif
+
 template<typename T> struct IsChar {
     enum { value = 0 };
 };
