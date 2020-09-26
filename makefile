@@ -12,7 +12,15 @@ CPPFLAGS_03 := -std=c++03
 
 all: $(OBJ_DIR) $(EXE_FILES)
 
+c++11: $(EXE_FILES_11)
+
+c++03: $(EXE_FILES_03)
+
 test: $(TEST_FILES)
+
+test11: $(TEST_FILES_11)
+
+test03: $(TEST_FILES_03)
 
 %.test: %
 	@$< 1>&2 2> /dev/null; \
