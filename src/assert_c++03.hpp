@@ -10,7 +10,7 @@ struct static_assertion;
 template<>
 struct static_assertion<true> {};
 
-#define static_assert(x) static_assertion<x>()
+#define static_assert(condition) static_assertion<condition>()
 #endif
 
 #endif
