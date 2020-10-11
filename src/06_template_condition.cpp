@@ -9,13 +9,20 @@ template<typename T, typename F> struct If<false, T, F> {
     typedef F type;
 };
 
-template<typename T1, typename T2> struct isSameType {
-    enum { value = false };
+template<class T, T v>
+struct IntegralConstant {
+    enum {
+       value = v
+    };
+    typedef T value_type;
+    typedef IntegralConstant<T,v> type;
 };
 
-template<typename T1> struct isSameType<T1, T1> {
-    enum { value = true };
-};
+struct TrueType : IntegralConstant<bool, true> {};
+struct FalseType : IntegralConstant<bool, false> {};
+
+template<typename T1, typename T2> struct isSameType : FalseType {}; 
+template<typename T1> struct isSameType<T1, T1> : TrueType {};
 
 #else
 template<bool C, typename T, typename F> struct If {
@@ -26,13 +33,18 @@ template<typename T, typename F> struct If<false, T, F> {
     using type = F;
 };
 
-template<typename T1, typename T2> struct isSameType {
-    static constexpr const auto value = false;
+template<class T, T v>
+struct IntegralConstant {
+    static constexpr const T value = v;
+    using value_type = T;
+    using type = IntegralConstant<T,v>;
 };
 
-template<typename T1> struct isSameType<T1, T1> {
-    static constexpr const auto value = true;
-};
+struct TrueType : IntegralConstant<bool, true> {};
+struct FalseType : IntegralConstant<bool, false> {};
+
+template<typename T1, typename T2> struct isSameType : FalseType {};
+template<typename T1> struct isSameType<T1, T1> : TrueType {};
 
 #endif
 
