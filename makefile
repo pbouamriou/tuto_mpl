@@ -7,8 +7,8 @@ TEST_FILES_11 := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.11.test,$(SRC_FILES))
 TEST_FILES_03 := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.03.test,$(SRC_FILES))
 TEST_FILES := $(TEST_FILES_03) $(TEST_FILES_11)
 EXE_FILES := $(EXE_FILES_03) $(EXE_FILES_11)
-CPPFLAGS := -std=c++17 -ftemplate-depth=84000
-CPPFLAGS_03 := -std=c++03 -ftemplate-depth=84000
+CPPFLAGS := -std=c++17 -ftemplate-depth=12000
+CPPFLAGS_03 := -std=c++03 -ftemplate-depth=4000
 
 all: $(OBJ_DIR) $(EXE_FILES)
 

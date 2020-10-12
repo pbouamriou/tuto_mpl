@@ -31,8 +31,8 @@ int main() {
     static_assert(Sum<10>::value == 55);
 #if (__cplusplus < 201103L)
     // Limit is lower in C++03
-    std::cout << Sum<41100>::value << std::endl;
+    std::cout << Sum<2000>::value << std::endl;
 #else
-    std::cout << Sum<42000>::value << std::endl;
+    std::cout << Sum<6000>::value << std::endl;
 #endif
 }
